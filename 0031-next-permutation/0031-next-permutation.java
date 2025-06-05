@@ -16,7 +16,7 @@ class Solution {
             reverse(nums,0,n-1);
         } else{
             
-            for(int i=n-1;i>=0;i++){
+            for(int i=n-1;i>=0;i--){
                 if(nums[ptr1]<nums[i]){
                     swap(nums,ptr1, i);
                     break;
