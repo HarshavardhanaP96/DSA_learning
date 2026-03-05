@@ -1,23 +1,25 @@
 class Solution {
-    public  List<List<String>> groupAnagrams(String[] s){
+
+    public List<List<String>> groupAnagrams(String[] s){
 
         if(s==null||s.length==0) return new ArrayList<>();
 
         Map<String, List<String>> map=new HashMap<>();
 
-        for(String ele:s){
+        for (String ele:s){
 
-            char[] charArray=ele.toCharArray();
-            Arrays.sort(charArray);
+            int[] count=new int[26];
 
-            String sortedString=String.valueOf(charArray);
-
-            //map.computeIfAbsent(sortedString,k->new ArrayList<>()).add(ele);  better version
-            
-            if(!map.containsKey(sortedString)){
-                map.put(sortedString,new ArrayList<>());
+            for (int i=0;i<ele.length();i++){
+                count[ele.charAt(i)-'a']++;
             }
-            map.get(sortedString).add(ele);
+
+            StringBuilder ss=new StringBuilder();
+            for (int i = 0; i < 26; i++) {
+                ss.append(count[i]).append("-"); // no need of index, because we are adding zero count as well, so position mained.
+            }
+
+            map.computeIfAbsent(new String(ss), k->new ArrayList<>()).add(ele);
 
         }
 
