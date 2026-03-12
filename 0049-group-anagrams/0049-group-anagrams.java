@@ -4,25 +4,23 @@ class Solution {
 
         if(s==null||s.length==0) return new ArrayList<>();
 
-        Map<String, List<String>> map=new HashMap<>();
+        Map<String,List<String>> map=new HashMap<>();
 
-        for (String ele:s){
+        for(int i=0;i<s.length;i++){
 
-            int[] count=new int[26];
+            char[] charArray=s[i].toCharArray();
+            Arrays.sort(charArray);
+            String sorted=String.valueOf(charArray);
 
-            for (int i=0;i<ele.length();i++){
-                count[ele.charAt(i)-'a']++;
+            if(!map.containsKey(sorted)){
+     
+                map.put(sorted,new ArrayList<>());
             }
+            map.get(sorted).add(s[i]);
 
-            StringBuilder ss=new StringBuilder();
-            for (int i = 0; i < 26; i++) {
-                ss.append(count[i]).append("-"); // no need of index, because we are adding zero count as well, so position mained.
-            }
-
-            map.computeIfAbsent(new String(ss), k->new ArrayList<>()).add(ele);
 
         }
-
         return new ArrayList<>(map.values());
+
     }
 }
