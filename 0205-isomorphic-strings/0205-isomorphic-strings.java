@@ -1,32 +1,25 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s.length()!=t.length()) return false;
-        HashMap<Character, Character> sTot=new HashMap<>();
-        HashMap<Character, Character> tTos=new HashMap<>();
-
-
-        for(int i=0;i<s.length();i++){
-
-            if(sTot.containsKey(s.charAt(i))){
-
-                if(sTot.get(s.charAt(i))!=t.charAt(i)) return false;
-            }
-            else{
-                sTot.put(s.charAt(i),t.charAt(i));
-            }
+        if (s.length() != t.length()) {
+            return false;
         }
 
-        for(int i=0;i<t.length();i++){
+        int[] mapST = new int[256];
+        int[] mapTS = new int[256];
 
-            if(tTos.containsKey(t.charAt(i))){
+        for (int i = 0; i < s.length(); i++) {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
 
-                if(tTos.get(t.charAt(i))!=s.charAt(i)) return false;
-            }
-            else{
-                tTos.put(t.charAt(i),s.charAt(i));
+            // If a new mapping is found
+            if (mapST[c1] == 0 && mapTS[c2] == 0) {
+                mapST[c1] = c2;
+                mapTS[c2] = c1;
+            } else if (mapST[c1] != c2 || mapTS[c2] != c1) {
+                // Check for inconsistent mapping
+                return false;
             }
         }
-
         return true;
     }
 }
