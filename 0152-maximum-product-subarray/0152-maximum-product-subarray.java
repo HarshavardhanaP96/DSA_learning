@@ -13,6 +13,7 @@ class Solution {
                 minSoFar=temp;
             }
 
+            //to handle zero (consider current)
             maxSoFar=Math.max(current,maxSoFar*current);
             minSoFar=Math.min(current,minSoFar*current);
 
