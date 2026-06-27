@@ -14,7 +14,7 @@ class Trie {
     public void insert(String word) {
         Node current=root;
         
-        for(Character c: word.toLowerCase().toCharArray()){
+        for(char c: word.toLowerCase().toCharArray()){
             int index= c-'a';
 
             if(current.children[index]==null){
@@ -34,7 +34,7 @@ class Trie {
 
         Node current=root;
 
-        for(Character c:word.toLowerCase().toCharArray()){
+        for(char c:word.toLowerCase().toCharArray()){
             int index=c-'a';
 
             if(current.children[index]==null){
@@ -52,7 +52,7 @@ class Trie {
     public boolean startsWith(String prefix) {
         Node current=root;
 
-        for(Character c:prefix.toLowerCase().toCharArray()){
+        for(char c:prefix.toLowerCase().toCharArray()){
             int index=c-'a';
 
             if(current.children[index]==null){
